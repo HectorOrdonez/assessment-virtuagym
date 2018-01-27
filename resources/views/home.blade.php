@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', 'Virtuagym Assessment - Home')
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -8,7 +10,11 @@
                     <div class="panel-heading">Plans</div>
 
                     <div class="panel-body">
-                        List of Plans
+                        @forelse($plans as $plan)
+                            <p>{{ "Plan #{$plan->id}: {$plan->name}" }}</p>
+                        @empty
+                            No plans at the moment.
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -17,7 +23,11 @@
                     <div class="panel-heading">Users</div>
 
                     <div class="panel-body">
-                        List of Users
+                        @forelse($users as $user)
+                        <p>{{ "User #{$user->id}: {$user->name}" }}</p>
+                        @empty
+                            No users at the moment.
+                        @endforelse
                     </div>
                 </div>
             </div>

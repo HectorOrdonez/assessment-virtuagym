@@ -1,14 +1,14 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Acceptance;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class InitTest extends TestCase
+class HomeTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Home shows basic stuff
      *
      * @return void
      */

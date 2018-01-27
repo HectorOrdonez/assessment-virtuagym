@@ -23,7 +23,9 @@
             "database/factories"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Virtuagym\\Plan\\": "src/Plan",
+            "Virtuagym\\User\\": "src/User"
         }
     },
     "autoload-dev": {
