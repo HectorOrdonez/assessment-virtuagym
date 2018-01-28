@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Virtuagym\Plan\Support\PlanSeeder;
+use Virtuagym\User\Support\UserSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(\Virtuagym\Plan\Support\PlanSeeder::class);
+         $this->call(PlanSeeder::class);
+         $this->call(UserSeeder::class);
     }
 }

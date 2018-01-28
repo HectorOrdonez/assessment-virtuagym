@@ -9,8 +9,7 @@ class HomeController extends Controller
     public function index(PlanRepositoryInterface $planRepository)
     {
         $plans = $planRepository->findAll();
-
-        $users = [];
+        $users = $planRepository->findAll();
 
         return view('home', compact('plans', 'users'));
     }

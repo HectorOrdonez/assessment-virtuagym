@@ -1,16 +1,16 @@
 <?php
-namespace Virtuagym\Plan\Entity;
+namespace Virtuagym\User\Entity;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Plan
- * @package Virtuagym\Plan\Entity
+ * Class User
+ * @package Virtuagym\User\Entity
  * @ORM\Entity
- * @ORM\Table(name="plans")
+ * @ORM\Table(name="users")
  */
-class Plan extends Model implements Arrayable
+class User extends Model implements Arrayable
 {
     private $id;
 
@@ -61,6 +61,6 @@ class Plan extends Model implements Arrayable
 
     public function newCollection(array $models = [])
     {
-        return new PlanCollection($models);
+        return new UserCollection($models);
     }
 }

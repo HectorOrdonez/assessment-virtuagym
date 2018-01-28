@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Virtuagym\Plan\PlanServiceProvider::class,
+        Virtuagym\User\UserServiceProvider::class,
 
     ],
 

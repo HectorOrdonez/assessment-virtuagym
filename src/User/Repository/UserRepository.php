@@ -1,11 +1,10 @@
 <?php
-namespace Virtuagym\Plan\Repository;
+namespace Virtuagym\User\Repository;
 
-use Virtuagym\Plan\Entity\Plan;
-use Virtuagym\Plan\Entity\PlanCollection;
-use Virtuagym\Plan\PlanRepositoryInterface;
+use Virtuagym\User\Entity\User;
+use Virtuagym\User\UserRepositoryInterface;
 
-class PlanRepository implements PlanRepositoryInterface
+class UserRepository implements UserRepositoryInterface
 {
 
     /**
@@ -13,7 +12,7 @@ class PlanRepository implements PlanRepositoryInterface
      */
     public function findAll()
     {
-        return Plan::all();
+        return User::all();
     }
 
     /**
@@ -27,7 +26,7 @@ class PlanRepository implements PlanRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function create(Plan $plan)
+    public function create(User $user)
     {
         // TODO: Implement create() method.
     }
@@ -35,7 +34,7 @@ class PlanRepository implements PlanRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function update(Plan $plan)
+    public function update(User $user)
     {
         // TODO: Implement update() method.
     }
@@ -43,7 +42,7 @@ class PlanRepository implements PlanRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function destroy(Plan $plan)
+    public function destroy(User $user)
     {
         // TODO: Implement destroy() method.
     }
