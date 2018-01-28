@@ -12,3 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index');
+
+Route::resource('plans', 'PlanController');
+Route::resource('users', 'UserController');
+
