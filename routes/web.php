@@ -13,6 +13,9 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::resource('plans', 'PlanController');
 Route::resource('users', 'UserController');
 
+Route::resource('plans', 'PlanController');
+
+// Users assigned to plans
+Route::resource('plans.users', 'PlanUserController', ['only' => ['store']]);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NewPlanRequest;
 use Virtuagym\Plan\PlanRepositoryInterface;
+use Virtuagym\User\UserRepositoryInterface;
 
 class PlanController extends Controller
 {
@@ -19,11 +20,16 @@ class PlanController extends Controller
             ->with('flash_message', sprintf(self::PLAN_CREATED, $plan->name));
     }
 
-    public function show(PlanRepositoryInterface $planRepository, $id)
+    public function show(
+        PlanRepositoryInterface $planRepository,
+        UserRepositoryInterface $userRepository,
+        $id
+    )
     {
         $plan = $planRepository->findOneById($id);
+        $availableUsers = $userRepository->findAll();
 
-        return view('plans.show', compact('plan'));
+        return view('plans.show', compact('plan', 'availableUsers'));
     }
 
     public function destroy(PlanRepositoryInterface $planRepository, $id)

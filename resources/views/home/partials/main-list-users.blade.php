@@ -25,7 +25,6 @@
         No users at the moment.
     @endforelse
 
-
     <a class="btn btn-success btn-secondary" data-toggle="modal" data-target="#add-user-modal">
         <i class="glyphicon glyphicon-plus"></i> Add User
     </a>
