@@ -12,9 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Plan extends Model implements Arrayable
 {
-    private $id;
-
-    private $name;
+    protected $fillable = ['name'];
 
     /**
      * @return array
@@ -25,38 +23,6 @@ class Plan extends Model implements Arrayable
             'id' => $this->getId(),
             'name' => $this->getName(),
         ];
-    }
-
-    /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
     }
 
     public function newCollection(array $models = [])

@@ -27,9 +27,13 @@ class PlanRepository implements PlanRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function create(Plan $plan)
+    public function create($name)
     {
-        // TODO: Implement create() method.
+        $plan = new Plan();
+        $plan->name = $name;
+        $plan->save();
+
+        return $plan;
     }
 
     /**

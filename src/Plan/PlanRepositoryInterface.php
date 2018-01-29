@@ -18,10 +18,10 @@ interface PlanRepositoryInterface {
     public function findOneById($id);
 
     /**
-     * @param Plan $plan
-     * @return bool
+     * @param $name
+     * @return Plan
      */
-    public function create(Plan $plan);
+    public function create($name);
 
     /**
      * @param Plan $plan

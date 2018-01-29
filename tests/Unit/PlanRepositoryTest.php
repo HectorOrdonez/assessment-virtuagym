@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Virtuagym\Plan\Entity\PlanCollection;
 use Virtuagym\Plan\PlanRepositoryInterface;
 use Virtuagym\Plan\Repository\PlanRepository;
 
@@ -37,6 +38,15 @@ class PlanRepositoyTest extends TestCase
     {
         $plans = $this->repo->findAll();
 
-        $this->assertTrue(is_array($plans));
+        $this->assertInstanceOf(PlanCollection::class, $plans);
+    }
+
+    public function testCanCreatePlan()
+    {
+        $name = 'best workout ever';
+
+        $plan = $this->repo->create($name);
+
+        $this->assertEquals($name, $plan->name);
     }
 }
