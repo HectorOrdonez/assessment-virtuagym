@@ -8368,3 +8368,11 @@ body {
   top: -2em;
 }
 
+#main-list-users .user-item {
+  line-height: 3em;
+}
+
+#main-list-users .user-item form {
+  display: inline;
+}
+

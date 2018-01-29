@@ -9,7 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Plans</div>
 
-                    <div class="panel-body">
+                    <div class="panel-body" id="main-list-plans">
                         @forelse($plans as $plan)
                             <p>{{ "Plan #{$plan->id}: {$plan->name}" }}</p>
                         @empty
@@ -26,12 +26,24 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Users</div>
 
-                    <div class="panel-body">
+                    <div class="panel-body" id="main-list-users">
                         @forelse($users as $user)
-                            <p>{{ "User #{$user->id}: {$user->full_name}" }}</p>
+                            <div class="user-item">
+                                {{ "User #{$user->id}: {$user->full_name}" }}
+
+                                <form action="{{ route('users.destroy', $user->id ) }}" method="post" class="form-inline">
+                                    <input type="hidden" name="_method" value="delete"/>
+                                    {{ csrf_field() }}
+                                    <button class="btn btn-danger btn-sm">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </form>
+                            </div>
                         @empty
                             No users at the moment.
                         @endforelse
+
+
                         <a class="btn btn-success btn-secondary" data-toggle="modal" data-target="#add-user-modal">
                             <i class="glyphicon glyphicon-plus"></i> Add User
                         </a>
