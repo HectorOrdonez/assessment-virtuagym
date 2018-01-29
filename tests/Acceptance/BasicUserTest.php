@@ -44,7 +44,6 @@ class BasicUserTest extends TestCase
         // assertions
     }
 
-
     public function testCanDestroyUser()
     {
         $userId = User::first()->id;

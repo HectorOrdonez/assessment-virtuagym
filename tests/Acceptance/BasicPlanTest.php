@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\Concerns\InteractsWithDatabase;
 use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Virtuagym\Plan\Entity\Plan;
 
 class BasicPlanTest extends TestCase
 {
@@ -57,14 +58,24 @@ class BasicPlanTest extends TestCase
         // assertions
     }
 
-
     public function testCanDestroyPlan()
     {
-        $planId = 1;
+        $planId = Plan::first()->id;
 
         $response = $this->delete('/plans/' . $planId);
 
         // assertions
+        $this->assertDatabaseMissing('plans', ['id' => $planId]);
     }
 
+    public function testCannotDestroyPlanThatDoesNotExist()
+    {
+        $planId = 123457;
+
+        $response = $this->delete('/plans/' . $planId);
+
+        // assertions
+        $response->assertStatus(404);
+        $this->assertDatabaseMissing('plans', ['id' => $planId]);
+    }
 }

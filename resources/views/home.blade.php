@@ -11,7 +11,17 @@
 
                     <div class="panel-body" id="main-list-plans">
                         @forelse($plans as $plan)
-                            <p>{{ "Plan #{$plan->id}: {$plan->name}" }}</p>
+                            <div class="main-list-item">
+                                {{ "Plan #{$plan->id}: {$plan->name}" }}
+
+                                <form action="{{ route('plans.destroy', $plan->id ) }}" method="post" class="form-inline">
+                                    <input type="hidden" name="_method" value="delete"/>
+                                    {{ csrf_field() }}
+                                    <button class="btn btn-danger btn-sm">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </form>
+                            </div>
                         @empty
                             No plans at the moment.
                         @endforelse
@@ -28,7 +38,7 @@
 
                     <div class="panel-body" id="main-list-users">
                         @forelse($users as $user)
-                            <div class="user-item">
+                            <div class="main-list-item">
                                 {{ "User #{$user->id}: {$user->full_name}" }}
 
                                 <form action="{{ route('users.destroy', $user->id ) }}" method="post" class="form-inline">

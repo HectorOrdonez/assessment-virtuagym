@@ -21,7 +21,7 @@ class PlanRepository implements PlanRepositoryInterface
      */
     public function findOneById($id)
     {
-        // TODO: Implement findOneById() method.
+        return Plan::findOrFail($id);
     }
 
     /**
@@ -47,8 +47,10 @@ class PlanRepository implements PlanRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function destroy(Plan $plan)
+    public function destroy($planId)
     {
-        // TODO: Implement destroy() method.
+        $this->findOneById($planId)->delete();
+
+        return true;
     }
 }

@@ -30,8 +30,8 @@ interface PlanRepositoryInterface {
     public function update(Plan $plan);
 
     /**
-     * @param Plan $plan
+     * @param int $planId
      * @return bool
      */
-    public function destroy(Plan $plan);
+    public function destroy($planId);
 }

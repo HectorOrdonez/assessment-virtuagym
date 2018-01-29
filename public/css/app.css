@@ -8368,11 +8368,13 @@ body {
   top: -2em;
 }
 
-#main-list-users .user-item {
+#main-list-users .main-list-item,
+#main-list-plans .main-list-item {
   line-height: 3em;
 }
 
-#main-list-users .user-item form {
+#main-list-users .main-list-item form,
+#main-list-plans .main-list-item form {
   display: inline;
 }
 
