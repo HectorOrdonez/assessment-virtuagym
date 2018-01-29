@@ -14,7 +14,7 @@
                       class="form-inline btn-group">
                     <input type="hidden" class="btn" name="_method" value="delete"/>
                     {{ csrf_field() }}
-                    <button type="button" class="btn btn-danger">
+                    <button class="btn btn-danger">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     </button>
                 </form>
