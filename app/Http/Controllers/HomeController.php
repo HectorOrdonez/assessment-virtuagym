@@ -14,6 +14,6 @@ class HomeController extends Controller
         $plans = $planRepository->findAll();
         $users = $userRepository->findAll();
 
-        return view('home', compact('plans', 'users'));
+        return view('home.index', compact('plans', 'users'));
     }
 }
