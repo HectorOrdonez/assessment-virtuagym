@@ -41,13 +41,23 @@
                             <div class="main-list-item">
                                 {{ "User #{$user->id}: {$user->full_name}" }}
 
-                                <form action="{{ route('users.destroy', $user->id ) }}" method="post" class="form-inline">
-                                    <input type="hidden" name="_method" value="delete"/>
-                                    {{ csrf_field() }}
-                                    <button class="btn btn-danger btn-sm">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                <div class="btn-group" role="group">
+                                    {{-- First button --}}
+                                    <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#edit-user-modal-{{ $user->id }}">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </button>
-                                </form>
+                                    @include('users.partials.edit-user-modal', ['user' => $user])
+
+                                    {{-- Second button needs fake sibling to left --}}
+                                    <form action="{{ route('users.destroy', $user->id ) }}" method="post"
+                                          class="form-inline btn-group">
+                                        <input type="hidden" class="btn" name="_method" value="delete"/>
+                                        {{ csrf_field() }}
+                                        <button type="button" class="btn btn-danger">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         @empty
                             No users at the moment.
