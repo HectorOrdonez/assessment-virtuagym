@@ -24,9 +24,6 @@ class UserController extends Controller
             ->with('flash_message', sprintf(self::USER_CREATED, $user->full_name));
     }
 
-    /**
-     * @todo validate id
-     */
     public function destroy(UserRepositoryInterface $userRepository, $id)
     {
         $userRepository->destroy($id);

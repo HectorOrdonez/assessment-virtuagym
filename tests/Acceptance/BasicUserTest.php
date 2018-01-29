@@ -55,4 +55,14 @@ class BasicUserTest extends TestCase
         $this->assertDatabaseMissing('users', ['id' => $userId]);
     }
 
+    public function testCannotDestroyUserThatDoesNotExist()
+    {
+        $userId = 123457;
+
+        $response = $this->delete('/users/' . $userId);
+
+        // assertions
+        $response->assertStatus(404);
+        $this->assertDatabaseMissing('users', ['id' => $userId]);
+    }
 }
