@@ -6,12 +6,12 @@ use Virtuagym\User\UserRepositoryInterface;
 
 class UserRepository implements UserRepositoryInterface
 {
-
     /**
      * @inheritdoc
      */
     public function findAll()
     {
+
         return User::all();
     }
 
@@ -26,9 +26,15 @@ class UserRepository implements UserRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function create(User $user)
+    public function create($firstName, $lastName, $email)
     {
-        // TODO: Implement create() method.
+        $user = new User();
+        $user->first_name = $firstName;
+        $user->last_name = $lastName;
+        $user->email = $email;
+        $user->save();
+
+        return $user;
     }
 
     /**

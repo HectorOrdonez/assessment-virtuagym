@@ -28,7 +28,7 @@
 
                     <div class="panel-body">
                         @forelse($users as $user)
-                            <p>{{ "User #{$user->id}: {$user->name}" }}</p>
+                            <p>{{ "User #{$user->id}: {$user->full_name}" }}</p>
                         @empty
                             No users at the moment.
                         @endforelse

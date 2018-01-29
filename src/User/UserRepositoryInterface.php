@@ -17,10 +17,12 @@ interface UserRepositoryInterface {
     public function findOneById($id);
 
     /**
-     * @param User $user
+     * @param string $firstName
+     * @param string $lastName
+     * @param string $email
      * @return bool
      */
-    public function create(User $user);
+    public function create($firstName, $lastName, $email);
 
     /**
      * @param User $user
