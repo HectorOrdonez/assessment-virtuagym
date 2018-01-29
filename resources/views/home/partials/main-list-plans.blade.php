@@ -3,13 +3,22 @@
         <div class="main-list-item">
             {{ "Plan #{$plan->id}: {$plan->name}" }}
 
-            <form action="{{ route('plans.destroy', $plan->id ) }}" method="post" class="form-inline">
-                <input type="hidden" name="_method" value="delete"/>
-                {{ csrf_field() }}
-                <button class="btn btn-danger btn-sm">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </button>
-            </form>
+            <div class="btn-group" role="group">
+                {{-- First button --}}
+                <a href="{{ route('plans.show', $plan->id) }}" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </a>
+
+                {{-- Second button needs fake sibling to left --}}
+                <form action="{{ route('plans.destroy', $plan->id ) }}" method="post"
+                      class="form-inline btn-group">
+                    <input type="hidden" class="btn" name="_method" value="delete"/>
+                    {{ csrf_field() }}
+                    <button type="button" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                </form>
+            </div>
         </div>
     @empty
         No plans at the moment.

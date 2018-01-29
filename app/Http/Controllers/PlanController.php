@@ -19,6 +19,13 @@ class PlanController extends Controller
             ->with('flash_message', sprintf(self::PLAN_CREATED, $plan->name));
     }
 
+    public function show(PlanRepositoryInterface $planRepository, $id)
+    {
+        $plan = $planRepository->findOneById($id);
+
+        return view('plans.show', compact('plan'));
+    }
+
     public function destroy(PlanRepositoryInterface $planRepository, $id)
     {
         $planRepository->destroy($id);

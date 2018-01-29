@@ -51,11 +51,10 @@ class BasicPlanTest extends TestCase
 
     public function testCanSeePlan()
     {
-        $planId = 1;
+        $planId = Plan::first()->id;
 
         $response = $this->get('/plans/' . $planId);
-
-        // assertions
+        $response->assertStatus(200);
     }
 
     public function testCanDestroyPlan()
