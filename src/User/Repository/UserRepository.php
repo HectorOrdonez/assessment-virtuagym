@@ -1,7 +1,9 @@
 <?php
 namespace Virtuagym\User\Repository;
 
+use Virtuagym\Plan\Entity\Plan;
 use Virtuagym\User\Entity\User;
+use Virtuagym\User\Entity\UserCollection;
 use Virtuagym\User\UserRepositoryInterface;
 
 class UserRepository implements UserRepositoryInterface
@@ -13,14 +15,6 @@ class UserRepository implements UserRepositoryInterface
     {
 
         return User::all();
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function findOneById($id)
-    {
-        return User::findOrFail($id);
     }
 
     /**
@@ -58,5 +52,26 @@ class UserRepository implements UserRepositoryInterface
         $this->findOneById($userId)->delete();
 
         return true;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function findOneById($id)
+    {
+        return User::findOrFail($id);
+    }
+
+    /**
+     * @param Plan $plan
+     * @return UserCollection
+     */
+    public function findAvailableForPlan(Plan $plan)
+    {
+        $userIds = array_map(function ($user) {
+            return $user['id'];
+        }, $plan->users()->get()->toArray());
+
+        return User::whereNotIn('id', $userIds)->get();
     }
 }

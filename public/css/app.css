@@ -8374,3 +8374,9 @@ img {
   display: inline;
 }
 
+#assign-new-user-list a.submit-button {
+  text-underline: none;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+

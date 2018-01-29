@@ -27,7 +27,7 @@ class PlanController extends Controller
     )
     {
         $plan = $planRepository->findOneById($id);
-        $availableUsers = $userRepository->findAll();
+        $availableUsers = $userRepository->findAvailableForPlan($plan);
 
         return view('plans.show', compact('plan', 'availableUsers'));
     }

@@ -7,3 +7,8 @@ $('.modal').find('.submit-button').click(function() {
 
     $form.submit();
 });
+$('.dropdown').find('.submit-button').click(function() {
+    var $form = $(this).closest('form');
+
+    $form.submit();
+});

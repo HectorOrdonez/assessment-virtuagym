@@ -1,6 +1,7 @@
 <?php
 namespace Virtuagym\User;
 
+use Virtuagym\Plan\Entity\Plan;
 use Virtuagym\User\Entity\User;
 use Virtuagym\User\Entity\UserCollection;
 
@@ -15,6 +16,12 @@ interface UserRepositoryInterface {
      * @return false|User
      */
     public function findOneById($id);
+
+    /**
+     * @param Plan $plan
+     * @return UserCollection
+     */
+    public function findAvailableForPlan(Plan $plan);
 
     /**
      * @param string $firstName

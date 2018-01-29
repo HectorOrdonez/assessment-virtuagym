@@ -11,19 +11,15 @@
         <div class="panel panel-default">
             <div class="panel-heading">Users assigned</div>
             <div class="panel-body">
-                @forelse($plan->users as $user)
-                    <ul class="list-group">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                @empty
-                    Nobody using this plan :(
-                @endforelse
+                <ul class="list-group">
+                    @forelse($plan->users as $user)
+                        <li class="list-group-item">{{ $user->full_name }}</li>
+                    @empty
+                        <li class="list-group-item">Nobody using this plan :(</li>
+                    @endforelse
+                </ul>
 
-                <hr />
+                <hr/>
 
                 @include('plans.partials.assign-new-user-dropdown')
             </div>
