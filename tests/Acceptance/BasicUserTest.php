@@ -4,14 +4,26 @@ namespace Tests\Acceptance;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Virtuagym\User\Entity\User;
 
 class BasicUserTest extends TestCase
 {
     public function testCanStoreNewUser()
     {
-        $response = $this->post('/users');
+        $firstName = 'Abraham';
+        $lastName = 'Lincoln';
+        $email = 'abraham@lincoln.com';
+
+        $response = $this->post('/users', [
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'email' => $email,
+        ]);
 
         // assertions
+        $response->assertRedirect('/');
+        $response->assertStatus(302);
+        $this->assertDatabaseHas('users', ['first_name' => $firstName]);
     }
 
     public function testCanUpdateUser()
@@ -35,11 +47,12 @@ class BasicUserTest extends TestCase
 
     public function testCanDestroyUser()
     {
-        $planId = 1;
+        $userId = User::first()->id;
 
-        $response = $this->delete('/users/' . $planId);
+        $response = $this->delete('/users/' . $userId);
 
         // assertions
+        $this->assertDatabaseMissing('users', ['id' => $userId]);
     }
 
 }

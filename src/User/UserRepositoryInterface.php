@@ -31,8 +31,8 @@ interface UserRepositoryInterface {
     public function update(User $user);
 
     /**
-     * @param User $user
+     * @param int $userId
      * @return bool
      */
-    public function destroy(User $user);
+    public function destroy($userId);
 }

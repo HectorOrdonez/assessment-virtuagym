@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use Virtuagym\User\Entity\User;
 use Virtuagym\User\Entity\UserCollection;
 use Virtuagym\User\UserRepositoryInterface;
 use Virtuagym\User\Repository\UserRepository;
@@ -51,5 +52,16 @@ class UserRepositoyTest extends TestCase
         $this->assertEquals($name, $user->first_name);
         $this->assertEquals($lastName, $user->last_name);
         $this->assertEquals($email, $user->email);
+    }
+
+    public function testCanDestroyUser()
+    {
+        $this->disableExceptionHandling();
+
+        $user = User::first();
+
+        $this->repo->destroy($user->id);
+
+        $this->assertDatabaseMissing('users', ['id' => $user->id]);
     }
 }

@@ -9,6 +9,7 @@ use Virtuagym\User\UserRepositoryInterface;
 class UserController extends Controller
 {
     const USER_CREATED = 'User %s created successfully';
+    const USER_DESTROYED = 'User %s destroyed successfully';
 
     public function store(UserRepositoryInterface $userRepository, CreateUserRequest $request)
     {
@@ -21,5 +22,17 @@ class UserController extends Controller
         return redirect()
             ->route('home')
             ->with('flash_message', sprintf(self::USER_CREATED, $user->full_name));
+    }
+
+    /**
+     * @todo validate id
+     */
+    public function destroy(UserRepositoryInterface $userRepository, $id)
+    {
+        $userRepository->destroy($id);
+
+        return redirect()
+            ->route('home')
+            ->with('flash_message', self::USER_DESTROYED);
     }
 }

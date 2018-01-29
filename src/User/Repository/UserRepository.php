@@ -20,7 +20,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function findOneById($id)
     {
-        // TODO: Implement findOneById() method.
+        return User::find($id);
     }
 
     /**
@@ -48,8 +48,10 @@ class UserRepository implements UserRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function destroy(User $user)
+    public function destroy($userId)
     {
-        // TODO: Implement destroy() method.
+        $this->findOneById($userId)->delete();
+
+        return true;
     }
 }
