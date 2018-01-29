@@ -7,3 +7,12 @@
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+// General styles
+@import 'core';
+
+// Components styles
+//@import 'components/flash-messages';
+
+@import 'components/flash-message';

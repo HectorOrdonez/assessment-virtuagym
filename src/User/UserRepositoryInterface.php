@@ -20,7 +20,7 @@ interface UserRepositoryInterface {
      * @param string $firstName
      * @param string $lastName
      * @param string $email
-     * @return bool
+     * @return User
      */
     public function create($firstName, $lastName, $email);
 

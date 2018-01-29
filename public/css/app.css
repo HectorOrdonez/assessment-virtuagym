@@ -8350,3 +8350,21 @@ button.close {
   }
 }
 
+html,
+body {
+  height: 100%;
+}
+
+img {
+  width: 100%;
+}
+
+body {
+  font-family: 'Lato', serif;
+}
+
+.flash_message {
+  position: relative;
+  top: -2em;
+}
+

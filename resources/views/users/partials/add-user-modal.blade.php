@@ -2,7 +2,7 @@
      aria-labelledby="addUserModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="{{route('plans.store')}}" method="post">
+            <form action="{{route('users.store')}}" method="post">
                 {{ csrf_field() }}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
