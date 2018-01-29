@@ -26,9 +26,12 @@ interface UserRepositoryInterface {
 
     /**
      * @param User $user
+     * @param string $firstName
+     * @param string $lastName
+     * @param string $email
      * @return bool
      */
-    public function update(User $user);
+    public function update(User $user, $firstName, $lastName, $email);
 
     /**
      * @param int $userId

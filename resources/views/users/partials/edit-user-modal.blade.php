@@ -4,6 +4,8 @@
         <div class="modal-content">
             <form action="{{route('users.update', $user->id)}}" method="post">
                 {{ csrf_field() }}
+                <input type="hidden" class="btn" name="_method" value="put"/>
+
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

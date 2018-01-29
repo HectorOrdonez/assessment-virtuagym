@@ -28,11 +28,26 @@ class BasicUserTest extends TestCase
 
     public function testCanUpdateUser()
     {
-        $newName = 'Jimmy';
+        $this->disableExceptionHandling();
 
-        $response = $this->put('/users', ['name' => $newName]);
+        $user = User::first();
+        $firstName = 'NewestUser';
+        $lastName = 'InTown';
+        $email = 'ohlala@whoami.com';
+
+        $response = $this->put('/users/' . $user->id, [
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'email' => $email,
+        ]);
 
         // assertions
+        $response->assertRedirect('/');
+        $response->assertStatus(302);
+        $this->assertDatabaseHas('users', [
+            'id' => $user->id,
+            'first_name' => $firstName
+        ]);
     }
 
     public function testCanSeeUser()

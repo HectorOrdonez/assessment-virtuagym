@@ -40,9 +40,14 @@ class UserRepository implements UserRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function update(User $user)
+    public function update(User $user, $firstName, $lastName, $email)
     {
-        // TODO: Implement update() method.
+        $user->first_name = $firstName;
+        $user->last_name = $lastName;
+        $user->email = $email;
+        $user->save();
+
+        return true;
     }
 
     /**
