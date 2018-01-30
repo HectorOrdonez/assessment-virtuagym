@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     const USER_CREATED = 'User %s created successfully';
     const USER_UPDATED = 'User %s updated successfully';
-    const USER_DESTROYED = 'User %s destroyed successfully';
+    const USER_DESTROYED = 'User destroyed successfully';
 
     public function store(UserRepositoryInterface $userRepository, CreateUserRequest $request)
     {

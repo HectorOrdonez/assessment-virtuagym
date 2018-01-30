@@ -41,7 +41,7 @@
                     @include('plans.exercises.list')
                 </li>
             @empty
-                <li class="list-group-item">No days in this program :(</li>
+                <li class="list-group-item">No days in this program.</li>
             @endforelse
         </ul>
 

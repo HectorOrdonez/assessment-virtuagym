@@ -39,7 +39,7 @@
                     </div>
                 </li>
             @empty
-                <li class="list-group-item">No exercises in this day :(</li>
+                <li class="list-group-item">No exercises in this day.</li>
             @endforelse
         </ul>
 

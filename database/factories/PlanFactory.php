@@ -1,8 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
+use Virtuagym\Plan\Entity\Plan;
 
-$factory->define(\Virtuagym\Plan\Entity\Plan::class, function (Faker $faker) {
+$factory->define(Plan::class, function (Faker $faker) {
     return [
         'name' => $faker->name . ' plan',
     ];

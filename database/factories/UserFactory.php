@@ -1,8 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
+use Virtuagym\User\Entity\User;
 
-$factory->define(\Virtuagym\User\Entity\User::class, function (Faker $faker) {
+$factory->define(User::class, function (Faker $faker) {
     return [
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,

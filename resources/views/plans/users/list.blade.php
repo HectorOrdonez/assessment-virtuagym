@@ -15,7 +15,7 @@
                     </form>
                 </li>
             @empty
-                <li class="list-group-item">Nobody using this plan :(</li>
+                <li class="list-group-item">Nobody using this plan.</li>
             @endforelse
         </ul>
 
