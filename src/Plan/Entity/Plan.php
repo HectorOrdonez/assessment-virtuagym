@@ -7,17 +7,19 @@ use Virtuagym\User\Entity\User;
 
 /**
  * Class Plan
- * @package Virtuagym\Plan\Entity
- * @ORM\Entity
- * @ORM\Table(name="plans")
  */
-class Plan extends Model implements Arrayable
+class Plan extends Model
 {
     protected $fillable = ['name'];
 
     public function users()
     {
         return $this->hasMany(User::class);
+    }
+
+    public function days()
+    {
+        return $this->hasMany(PlanDay::class);
     }
 
     public function newCollection(array $models = [])

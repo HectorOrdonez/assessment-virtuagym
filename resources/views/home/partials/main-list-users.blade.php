@@ -29,3 +29,5 @@
         <i class="glyphicon glyphicon-plus"></i> Add User
     </a>
 </div>
+
+@include('users.partials.add-user-modal')

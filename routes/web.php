@@ -19,3 +19,9 @@ Route::resource('plans', 'PlanController');
 
 // Users assigned to plans
 Route::resource('plans.users', 'PlanUserController', ['only' => ['store', 'destroy']]);
+
+// Plan days
+Route::resource('plans.days', 'PlanDayController', ['only' => ['store', 'update', 'destroy']]);
+
+// Day Exercises
+Route::resource('days.exercises', 'DayExerciseController', ['only' => ['store', 'update', 'destroy']]);

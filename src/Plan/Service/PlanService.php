@@ -2,11 +2,20 @@
 namespace Virtuagym\Plan\Service;
 
 use Virtuagym\Plan\Entity\Plan;
+use Virtuagym\Plan\Entity\PlanDay;
+use Virtuagym\Plan\PlanDayRepositoryInterface;
 use Virtuagym\Plan\PlanServiceInterface;
 use Virtuagym\User\Entity\User;
 
 class PlanService implements PlanServiceInterface
 {
+    private $planDayRepository;
+
+    public function __construct(PlanDayRepositoryInterface $planDayRepository)
+    {
+        $this->planDayRepository = $planDayRepository;
+    }
+
     /**
      * @param User $user
      * @param Plan $plan
@@ -35,5 +44,15 @@ class PlanService implements PlanServiceInterface
         $user->save();
 
         return true;
+    }
+
+    /**
+     * @param Plan $plan
+     * @param string $dayName
+     * @return PlanDay
+     */
+    public function addDayToPlan(Plan $plan, $dayName)
+    {
+        $this->planDayRepository->create($plan, $dayName);
     }
 }

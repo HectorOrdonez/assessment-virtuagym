@@ -3,6 +3,7 @@ namespace Virtuagym\Plan;
 
 
 use Virtuagym\Plan\Entity\Plan;
+use Virtuagym\Plan\Entity\PlanDay;
 use Virtuagym\User\Entity\User;
 
 interface PlanServiceInterface {
@@ -19,4 +20,11 @@ interface PlanServiceInterface {
      * @return bool
      */
     public function removeUserFromPlan(User $user, Plan $plan);
+
+    /**
+     * @param Plan $plan
+     * @param string $dayName
+     * @return PlanDay
+     */
+    public function addDayToPlan(Plan $plan, $dayName);
 }

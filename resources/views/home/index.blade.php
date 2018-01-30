@@ -21,7 +21,4 @@
             </div>
         </div>
     </div>
-
-    @include('plans.partials.add-plan-modal')
-    @include('users.partials.add-user-modal')
 @endsection
