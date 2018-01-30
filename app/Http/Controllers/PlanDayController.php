@@ -30,14 +30,18 @@ class PlanDayController extends Controller
     }
 
     public function update(
+        PlanServiceInterface $service,
+        PlanRepositoryInterface $planRepository,
         PlanDayRepositoryInterface $planDayRepository,
         UpdatePlanDayRequest $request,
         $planId,
-        $planDayId)
+        $planDayId
+    )
     {
+        $plan = $planRepository->findOneById($planId);
         $planDay = $planDayRepository->findOneById($planDayId);
 
-        $planDayRepository->update($planDay, ['name' => $request->get('name')]);
+        $service->updateDayFromPlan($plan, $planDay, ['name' => $request->get('name')]);
 
         return ['ok'];
     }

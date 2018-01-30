@@ -52,4 +52,5 @@
     @parent
     <script src="/js/specifics/plan-name.js"></script>
     <script src="/js/specifics/plan-day-name.js"></script>
+    <script src="/js/specifics/exercise-name.js"></script>
 @endsection

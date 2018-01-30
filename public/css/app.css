@@ -8390,7 +8390,11 @@ form.form-inline {
   display: inline;
 }
 
-.input-container {
+.day-input-container {
+  display: none;
+}
+
+.exercise-input-container {
   display: none;
 }
 

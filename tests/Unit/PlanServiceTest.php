@@ -6,11 +6,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Mockery\MockInterface;
 use Tests\TestCase;
 use Virtuagym\Plan\Entity\Plan;
+use Virtuagym\Plan\Repository\ExerciseRepository;
+use Virtuagym\Plan\Repository\PlanDayRepository;
 use Virtuagym\Plan\Service\PlanService;
 use Virtuagym\User\Entity\User;
 
 class PlanServiceTest extends TestCase
 {
+    private function makePlanService()
+    {
+        return new PlanService(new PlanDayRepository(), new ExerciseRepository());
+    }
     public function testAssignUserToPlan()
     {
         $userId = rand(1, 1000);
@@ -33,8 +39,7 @@ class PlanServiceTest extends TestCase
         $planMock = \Mockery::mock(Plan::class);
         $planMock->shouldReceive('users')->once()->andReturn($usersMock);
 
-        $planService = new PlanService();
-        $response = $planService->assignUserToPlan($userMock, $planMock);
+        $response = $this->makePlanService()->assignUserToPlan($userMock, $planMock);
 
         $this->assertTrue($response);
     }
@@ -53,8 +58,7 @@ class PlanServiceTest extends TestCase
          */
         $planMock = \Mockery::mock(Plan::class);
 
-        $planService = new PlanService();
-        $response = $planService->removeUserFromPlan($userMock, $planMock);
+        $response = $this->makePlanService()->removeUserFromPlan($userMock, $planMock);
 
         $this->assertTrue($response);
     }

@@ -94,4 +94,27 @@ class PlanService implements PlanServiceInterface
     {
         return $this->exerciseRepository->destroy($exercise->id);
     }
+
+    /**
+     * @param Plan $plan
+     * @param PlanDay $day
+     * @param array $params
+     * @return bool
+     */
+    public function updateDayFromPlan(Plan $plan, PlanDay $day, array $params)
+    {
+        return $this->planDayRepository->update($day, $params);
+    }
+
+    /**
+     * @param Plan $plan
+     * @param PlanDay $day
+     * @param Exercise $exercise
+     * @param array $params
+     * @return bool
+     */
+    public function updateExerciseFromDay(Plan $plan, PlanDay $day, Exercise $exercise, array $params)
+    {
+        return $this->exerciseRepository->update($exercise, $params);
+    }
 }

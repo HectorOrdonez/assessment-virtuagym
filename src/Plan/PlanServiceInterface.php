@@ -51,4 +51,21 @@ interface PlanServiceInterface {
      * @return bool
      */
     public function removeExerciseFromDay(Plan $plan, PlanDay $day, Exercise $exercise);
+
+    /**
+     * @param Plan $plan
+     * @param PlanDay $day
+     * @param array $params
+     * @return bool
+     */
+    public function updateDayFromPlan(Plan $plan, PlanDay $day, array $params);
+
+    /**
+     * @param Plan $plan
+     * @param PlanDay $day
+     * @param Exercise $exercise
+     * @param array $params
+     * @return bool
+     */
+    public function updateExerciseFromDay(Plan $plan, PlanDay $day, Exercise $exercise, array $params);
 }

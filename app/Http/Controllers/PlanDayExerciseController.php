@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateExerciseRequest;
+use App\Http\Requests\UpdateExerciseRequest;
 use Virtuagym\Plan\ExerciseRepositoryInterface;
 use Virtuagym\Plan\PlanDayRepositoryInterface;
 use Virtuagym\Plan\PlanRepositoryInterface;
 use Virtuagym\Plan\PlanServiceInterface;
+use Virtuagym\Plan\Repository\PlanRepository;
 
 class PlanDayExerciseController extends Controller
 {
@@ -32,9 +34,24 @@ class PlanDayExerciseController extends Controller
             ->with('flash_message', self::EXERCISE_CREATED);
     }
 
-    public function update()
+    public function update(
+        PlanServiceInterface $service,
+        PlanRepositoryInterface $planRepository,
+        PlanDayRepositoryInterface $planDayRepository,
+        ExerciseRepositoryInterface $exerciseRepository,
+        UpdateExerciseRequest $request,
+        $planId,
+        $planDayId,
+        $exerciseId
+    )
     {
+        $plan = $planRepository->findOneById($planId);
+        $planDay = $planDayRepository->findOneById($planDayId);
+        $exercise = $exerciseRepository->findOneById($exerciseId);
 
+        $service->updateExerciseFromDay($plan, $planDay, $exercise, ['name' => $request->get('name')]);
+
+        return ['ok'];
     }
 
     public function destroy(

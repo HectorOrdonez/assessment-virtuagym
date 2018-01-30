@@ -8,16 +8,16 @@
 // When clicking the switcher we need to hide the regular text and show the input
 $('.day-name-switcher').click(function() {
     //var $previousTextField = $(this).parent().parent().find('.regular-text');
-    var $textContainer = $(this).closest('.text-container');
-    var $inputContainer = $textContainer.parent().find('.input-container');
+    var $textContainer = $(this).closest('.day-text-container');
+    var $inputContainer = $textContainer.parent().find('.day-input-container');
 
     $textContainer.hide();
     $inputContainer.show();
 });
 
 $('.plan-day-name-submitter').click(function(event) {
-    var $inputContainer = $(this).closest('.input-container');
-    var $textContainer = $inputContainer.parent().find('.text-container');
+    var $inputContainer = $(this).closest('.day-input-container');
+    var $textContainer = $inputContainer.parent().find('.day-text-container');
 
     $textContainer.show();
     $inputContainer.hide();

@@ -4,7 +4,7 @@
         <ul class="list-group">
             @forelse($plan->days as $day)
                 <li class="list-group-item">
-                    <div class="text-container">
+                    <div class="day-text-container">
                         <div class="regular-text">{{ $day->name}}</div>
 
                         <div class="text-left btn-group" role="group">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
 
-                    <div class="input-container">
+                    <div class="day-input-container">
                         <form action="{{route('plans.days.update', [$plan->id, $day->id] )}}" method="post">
                             <div class="input-group col-md-6">
                                 {{ csrf_field() }}
