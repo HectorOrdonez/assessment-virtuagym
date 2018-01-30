@@ -2,6 +2,7 @@
 namespace Virtuagym\Plan;
 
 use Illuminate\Support\ServiceProvider;
+use Virtuagym\Plan\Repository\ExerciseRepository;
 use Virtuagym\Plan\Repository\PlanDayRepository;
 use Virtuagym\Plan\Repository\PlanRepository;
 use Virtuagym\Plan\Service\PlanService;
@@ -20,8 +21,11 @@ class PlanServiceProvider extends ServiceProvider
         $this->app->bind(PlanDayRepositoryInterface::class, function () {
             return new PlanDayRepository();
         });
+        $this->app->bind(ExerciseRepositoryInterface::class, function () {
+            return new ExerciseRepository();
+        });
         $this->app->bind(PlanServiceInterface::class, function () {
-            return new PlanService(new PlanDayRepository());
+            return new PlanService(new PlanDayRepository(), new ExerciseRepository());
         });
     }
 }

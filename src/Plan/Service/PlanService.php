@@ -1,8 +1,10 @@
 <?php
 namespace Virtuagym\Plan\Service;
 
+use Virtuagym\Plan\Entity\Exercise;
 use Virtuagym\Plan\Entity\Plan;
 use Virtuagym\Plan\Entity\PlanDay;
+use Virtuagym\Plan\ExerciseRepositoryInterface;
 use Virtuagym\Plan\PlanDayRepositoryInterface;
 use Virtuagym\Plan\PlanServiceInterface;
 use Virtuagym\User\Entity\User;
@@ -10,10 +12,15 @@ use Virtuagym\User\Entity\User;
 class PlanService implements PlanServiceInterface
 {
     private $planDayRepository;
+    private $exerciseRepository;
 
-    public function __construct(PlanDayRepositoryInterface $planDayRepository)
+    public function __construct(
+        PlanDayRepositoryInterface $planDayRepository,
+        ExerciseRepositoryInterface $exerciseRepository
+    )
     {
         $this->planDayRepository = $planDayRepository;
+        $this->exerciseRepository = $exerciseRepository;
     }
 
     /**
@@ -54,5 +61,37 @@ class PlanService implements PlanServiceInterface
     public function addDayToPlan(Plan $plan, $dayName)
     {
         $this->planDayRepository->create($plan, $dayName);
+    }
+
+    /**
+     * @param Plan $plan
+     * @param PlanDay $day
+     * @param $exerciseName
+     * @return Exercise
+     */
+    public function addExerciseToDay(Plan $plan, PlanDay $day, $exerciseName)
+    {
+        return $this->exerciseRepository->create($day, $exerciseName);
+    }
+
+    /**
+     * @param Plan $plan
+     * @param PlanDay $day
+     * @return bool
+     */
+    public function removeDayFromPlan(Plan $plan, PlanDay $day)
+    {
+        return $this->planDayRepository->destroy($day->id);
+    }
+
+    /**
+     * @param Plan $plan
+     * @param PlanDay $day
+     * @param Exercise $exercise
+     * @return bool
+     */
+    public function removeExerciseFromDay(Plan $plan, PlanDay $day, Exercise $exercise)
+    {
+        return $this->exerciseRepository->destroy($exercise->id);
     }
 }

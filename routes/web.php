@@ -24,4 +24,4 @@ Route::resource('plans.users', 'PlanUserController', ['only' => ['store', 'destr
 Route::resource('plans.days', 'PlanDayController', ['only' => ['store', 'update', 'destroy']]);
 
 // Day Exercises
-Route::resource('days.exercises', 'DayExerciseController', ['only' => ['store', 'update', 'destroy']]);
+Route::resource('plans.days.exercises', 'PlanDayExerciseController', ['only' => ['store', 'update', 'destroy']]);

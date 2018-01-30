@@ -42,9 +42,17 @@ class PlanDayController extends Controller
         return ['ok'];
     }
 
-    public function destroy(PlanDayRepositoryInterface $planDayRepository, $planId, $planDayId)
+    public function destroy(
+        PlanServiceInterface $service,
+        PlanDayRepositoryInterface $planDayRepository,
+        PlanRepositoryInterface $planRepository,
+        $planId,
+        $planDayId)
     {
-        $planDayRepository->destroy($planDayId);
+        $plan = $planRepository->findOneById($planId);
+        $planDay = $planDayRepository->findOneById($planDayId);
+
+        $service->removeDayFromPlan($plan, $planDay);
 
         return redirect()
             ->route('plans.show', $planId)

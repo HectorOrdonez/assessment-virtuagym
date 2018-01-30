@@ -39,16 +39,18 @@
                     </div>
                 </li>
             @empty
-                <li class="list-group-item">No exercises in this program :(</li>
+                <li class="list-group-item">No exercises in this day :(</li>
             @endforelse
         </ul>
 
         <hr/>
 
-        <a class="btn btn-success btn-secondary" data-toggle="modal" data-target="#add-exercise-day-modal">
+        <a class="btn btn-success btn-secondary" data-toggle="modal" data-target="#add-exercise-modal">
             <i class="glyphicon glyphicon-plus"></i> Add Exercise
         </a>
 
     </div>
 
 </div>
+
+@include('plans.exercises.add-modal')
