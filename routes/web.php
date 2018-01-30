@@ -18,4 +18,4 @@ Route::resource('users', 'UserController');
 Route::resource('plans', 'PlanController');
 
 // Users assigned to plans
-Route::resource('plans.users', 'PlanUserController', ['only' => ['store']]);
+Route::resource('plans.users', 'PlanUserController', ['only' => ['store', 'destroy']]);

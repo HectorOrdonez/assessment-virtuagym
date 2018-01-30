@@ -8364,6 +8364,10 @@ img {
   top: -2em;
 }
 
+form.form-inline {
+  display: inline;
+}
+
 #main-list-users .main-list-item,
 #main-list-plans .main-list-item {
   line-height: 3em;
