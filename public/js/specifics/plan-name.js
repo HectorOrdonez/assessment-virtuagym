@@ -1,3 +1,9 @@
+/**
+ * This script allows
+ * - the plan name to be switched from regular text to input
+ * - the resulting form to be submitted asynchronously
+ * - in case of success it replaces the previous name with the new one
+ */
 var $planNameForm = $('#plan-name-form');
 var $planTitle = $('#plan-title');
 var previousTitle = $('#plan-name-input').val();
@@ -28,9 +34,9 @@ $('#plan-name-form-submitter').click(function (event) {
         error: function () {
             $planNameForm.hide();
             $planTitle.show();
-            ajax_flash_message('alert-danger', 'AAAAAAAAAHHHHHHHH YOU BROKE IT DAMN IT');
+            ajax_flash_message('alert-danger', 'Fatal error');
         }
     });
 
-    event.preventDefault(); // avoid to execute the actual submit of the form.
+    event.preventDefault();
 });

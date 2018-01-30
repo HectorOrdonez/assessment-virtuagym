@@ -8386,6 +8386,14 @@ form.form-inline {
   display: none;
 }
 
+.regular-text {
+  display: inline;
+}
+
+.input-container {
+  display: none;
+}
+
 #assign-new-user-list a.submit-button {
   text-underline: none;
   margin-left: 1em;

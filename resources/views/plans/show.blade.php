@@ -40,5 +40,6 @@
 
 @section('js')
     @parent
-    <script src="/js/specifics/plan-show.js"></script>
+    <script src="/js/specifics/plan-name.js"></script>
+    <script src="/js/specifics/plan-day-name.js"></script>
 @endsection
