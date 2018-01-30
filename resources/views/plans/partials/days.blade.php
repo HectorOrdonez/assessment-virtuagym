@@ -36,6 +36,9 @@
                             </div>
                         </form>
                     </div>
+
+                    <hr/>
+                    @include('plans.partials.exercises')
                 </li>
             @empty
                 <li class="list-group-item">No days in this program :(</li>

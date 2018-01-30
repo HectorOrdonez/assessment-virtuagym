@@ -15,6 +15,11 @@ class PlanDay extends Model
         return $this->hasOne(Plan::class);
     }
 
+    public function exercises()
+    {
+        return $this->hasMany(Exercise::class);
+    }
+
     public function newCollection(array $models = [])
     {
         return new PlanDayCollection($models);

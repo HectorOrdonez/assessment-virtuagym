@@ -32,8 +32,6 @@
 
         @include('plans.partials.days')
 
-        @include('plans.partials.exercises')
-
         <div class="pull-left">
             <a href="{{ route('home') }}" class="btn btn-default">Back</a>
         </div>
