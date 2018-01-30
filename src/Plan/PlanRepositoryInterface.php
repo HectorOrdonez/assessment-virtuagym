@@ -25,9 +25,10 @@ interface PlanRepositoryInterface {
 
     /**
      * @param Plan $plan
+     * @param array $params
      * @return bool
      */
-    public function update(Plan $plan);
+    public function update(Plan $plan, array $params);
 
     /**
      * @param int $planId

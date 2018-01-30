@@ -1,4 +1,8 @@
-.flash_message {
+.flash_message_container {
   position: relative;
   top: -2em;
+}
+
+#ajax_flash_message {
+  display: none;
 }

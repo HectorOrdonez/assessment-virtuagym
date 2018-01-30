@@ -8359,9 +8359,13 @@ img {
   width: 100%;
 }
 
-.flash_message {
+.flash_message_container {
   position: relative;
   top: -2em;
+}
+
+#ajax_flash_message {
+  display: none;
 }
 
 form.form-inline {
@@ -8376,6 +8380,10 @@ form.form-inline {
 #main-list-users .main-list-item form,
 #main-list-plans .main-list-item form {
   display: inline;
+}
+
+#plan-name-form {
+  display: none;
 }
 
 #assign-new-user-list a.submit-button {

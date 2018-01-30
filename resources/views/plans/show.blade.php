@@ -4,8 +4,27 @@
 
 @section('content')
     <div class="container">
-        <div class="page-header">
-            <h1>Plan #{{ $plan->id }}: {{$plan->name}}</h1>
+        <div class="btn-group">
+            <h1 id="plan-title">
+                Plan #{{ $plan->id }}: {{$plan->name}}
+
+                <button type="button" class="btn btn-default" id="button-plan-name-switcher">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </button>
+            </h1>
+
+            <form action="{{ route('plans.update', $plan->id) }}" class="navbar-form navbar-left" method="post" id="plan-name-form">
+                {{ csrf_field() }}
+                <input type="hidden" name="_method" value="put"/>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="New name" value="{{ $plan->name }}" name='name'
+                           id="plan-name-input">
+                </div>
+                <button type="button" class="btn btn-success" id="plan-name-form-submitter">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </button>
+            </form>
         </div>
 
         <div class="panel panel-default">
@@ -39,4 +58,9 @@
         </div>
     </div>
 
+@endsection
+
+@section('js')
+    @parent
+    <script src="/js/specifics/plan-show.js"></script>
 @endsection

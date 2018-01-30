@@ -39,9 +39,16 @@ class PlanRepository implements PlanRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function update(Plan $plan)
+    public function update(Plan $plan, array $params)
     {
-        // TODO: Implement update() method.
+        if(isset($params['name']))
+        {
+            $plan->name = $params['name'];
+        }
+
+        $plan->save();
+
+        return true;
     }
 
     /**
