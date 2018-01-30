@@ -19,7 +19,7 @@
             @endforelse
         </ul>
 
-        @include('plans.partials.assign-new-user-dropdown')
+        @include('plans.users.assign-dropdown')
     </div>
 
 </div>

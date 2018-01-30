@@ -38,7 +38,7 @@
                     </div>
 
                     <hr/>
-                    @include('plans.partials.exercises')
+                    @include('plans.exercises.list')
                 </li>
             @empty
                 <li class="list-group-item">No days in this program :(</li>
@@ -55,4 +55,4 @@
 
 </div>
 
-@include('plans.partials.add-plan-day-modal')
+@include('plans.days.add-modal')

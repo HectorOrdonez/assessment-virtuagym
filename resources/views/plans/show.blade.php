@@ -28,9 +28,9 @@
             </form>
         </div>
 
-        @include('plans.partials.users')
+        @include('plans.users.list')
 
-        @include('plans.partials.days')
+        @include('plans.days.list')
 
         <div class="pull-left">
             <a href="{{ route('home') }}" class="btn btn-default">Back</a>
