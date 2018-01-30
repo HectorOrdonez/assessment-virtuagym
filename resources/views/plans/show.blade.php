@@ -13,7 +13,8 @@
                 </button>
             </h1>
 
-            <form action="{{ route('plans.update', $plan->id) }}" class="navbar-form navbar-left" method="post" id="plan-name-form">
+            <form action="{{ route('plans.update', $plan->id) }}" class="navbar-form navbar-left" method="post"
+                  id="plan-name-form">
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="put"/>
 
@@ -27,13 +28,24 @@
             </form>
         </div>
 
-        @include('plans.partials.users');
+        @include('plans.partials.users')
 
-        @include('plans.partials.days');
+        @include('plans.partials.days')
 
-        @include('plans.partials.exercises');
+        @include('plans.partials.exercises')
 
-        <a href="{{ route('home') }}" class="btn btn-default">Back</a>
+        <div class="pull-left">
+            <a href="{{ route('home') }}" class="btn btn-default">Back</a>
+        </div>
+
+        <div class="pull-right">
+            <form action="{{ route('plans.destroy', $plan->id) }}" method="post">
+                {{ csrf_field() }}
+                <input type="hidden" name="_method" value="delete "/>
+                <button class="btn btn-danger">Destroy</button>
+            </form>
+        </div>
+
     </div>
 
 @endsection
