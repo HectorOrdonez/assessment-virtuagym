@@ -28,3 +28,5 @@
         <i class="glyphicon glyphicon-plus"></i> Add Plan
     </a>
 </div>
+
+@include('plans.partials.add-modal')
