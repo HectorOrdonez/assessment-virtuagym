@@ -24,20 +24,23 @@
                     </div>
 
                     <div class="input-container">
-                        <div class="input-group col-md-6">
-                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                            <a class="btn input-group-addon btn-success plan-day-name-submitter">
-                                <span class="input-group-text glyphicon glyphicon-ok" aria-hidden="true"></span>
-                            </a>
-                        </div>
+                        <form action="{{route('plans.days.update', [$plan->id, $day->id] )}}" method="post">
+                            <div class="input-group col-md-6">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="put"/>
+
+                                <input type="text" class="form-control disabled-enter" name="name" value="{{ $day->name }}">
+                                <a class="btn input-group-addon btn-success plan-day-name-submitter">
+                                    <span class="input-group-text glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                        </form>
                     </div>
                 </li>
             @empty
                 <li class="list-group-item">No days in this program :(</li>
             @endforelse
         </ul>
-
-        {{--        @include('plans.partials.assign-new-user-dropdown')--}}
 
         <hr/>
 

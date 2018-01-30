@@ -15,52 +15,16 @@ $('.day-name-switcher').click(function() {
     $inputContainer.show();
 });
 
-$('.plan-day-name-submitter').click(function() {
+$('.plan-day-name-submitter').click(function(event) {
     var $inputContainer = $(this).closest('.input-container');
     var $textContainer = $inputContainer.parent().find('.text-container');
 
     $textContainer.show();
     $inputContainer.hide();
-});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
-
-
-
-
-
-var $planNameForm = $('#plan-name-form');
-var $planTitle = $('#plan-title');
-var previousTitle = $('#plan-name-input').val();
-
-$('#button-plan-name-switcher').click(function() {
-    $planNameForm.slideDown();
-    $planTitle.slideUp();
-});
-
-$('#plan-name-form-submitter').click(function (event) {
-    var url = $('#plan-name-form').attr('action');
-    var $form = $('#plan-name-form');
-    var newTitle = $('#plan-name-input').val();
+    var $form = $inputContainer.find('form');
+    var url = $form.attr('action');
+    var newName = $inputContainer.find(".form-control").val();
 
     $.ajax({
         type: "POST",
@@ -68,20 +32,19 @@ $('#plan-name-form-submitter').click(function (event) {
         data: $form.serialize(), // serializes the form's elements.
         success: function()
         {
-            $planNameForm.slideUp();
-            $planTitle.slideDown();
+            $inputContainer.hide();
+            $textContainer.show();
 
-            $planTitle.text($planTitle.text().replace(previousTitle, newTitle));
+            $textContainer.find('.regular-text').html(newName);
 
-            ajax_flash_message('alert-success', 'Plan name successfully changed');
+            ajax_flash_message('alert-success', 'Day name successfully changed');
         },
         error: function () {
-            $planNameForm.hide();
-            $planTitle.show();
+            $inputContainer.hide();
+            $textContainer.show();
             ajax_flash_message('alert-danger', 'Fatal error');
         }
     });
 
     event.preventDefault();
 });
-*/

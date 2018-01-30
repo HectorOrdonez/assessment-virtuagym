@@ -13,6 +13,16 @@ $('.dropdown').find('.submit-button').click(function() {
     $form.submit();
 });
 
+// Prevent specific inputs to submit forms on enter
+$(document).ready(function() {
+    $('input.disabled-enter').keydown(function(event){
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
+});
+
 function ajax_flash_message(type, message) {
     var $box = $('#ajax_flash_message');
     $box.addClass(type);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePlanDayRequest;
+use App\Http\Requests\UpdatePlanDayRequest;
 use Virtuagym\Plan\PlanDayRepositoryInterface;
 use Virtuagym\Plan\PlanRepositoryInterface;
 use Virtuagym\Plan\PlanServiceInterface;
@@ -28,9 +29,17 @@ class PlanDayController extends Controller
             ->with('flash_message', self::PLAN_DAY_CREATED);
     }
 
-    public function update()
+    public function update(
+        PlanDayRepositoryInterface $planDayRepository,
+        UpdatePlanDayRequest $request,
+        $planId,
+        $planDayId)
     {
+        $planDay = $planDayRepository->findOneById($planDayId);
 
+        $planDayRepository->update($planDay, ['name' => $request->get('name')]);
+
+        return ['ok'];
     }
 
     public function destroy(PlanDayRepositoryInterface $planDayRepository, $planId, $planDayId)
