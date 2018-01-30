@@ -20,4 +20,20 @@ class PlanService implements PlanServiceInterface
 
         return true;
     }
+
+    /**
+     * @param User $user
+     * @param Plan $plan
+     * @return bool
+     *
+     * @todo Right now there is no need for the plan to do this, but we might want to send an email
+     *       and there we might specify the plan that got removed from the user
+     */
+    public function removeUserFromPlan(User $user, Plan $plan)
+    {
+        $user->plan_id = null;
+        $user->save();
+
+        return true;
+    }
 }

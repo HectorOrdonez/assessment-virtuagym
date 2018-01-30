@@ -39,5 +39,23 @@ class PlanServiceTest extends TestCase
         $this->assertTrue($response);
     }
 
+    public function testRemoveUserFromPlan()
+    {
+        /**
+         * @var MockInterface|User $userMock
+         */
+        $userMock = \Mockery::mock(User::class);
+        $userMock->shouldReceive('setAttribute')->with('plan_id', null);
+        $userMock->shouldReceive('save')->once();
 
+        /**
+         * @var MockInterface|Plan $planMock
+         */
+        $planMock = \Mockery::mock(Plan::class);
+
+        $planService = new PlanService();
+        $response = $planService->removeUserFromPlan($userMock, $planMock);
+
+        $this->assertTrue($response);
+    }
 }
