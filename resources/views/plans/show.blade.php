@@ -29,9 +29,11 @@
                     @endforelse
                 </ul>
 
+                @include('plans.partials.assign-new-user-dropdown')
+
                 <hr/>
 
-                @include('plans.partials.assign-new-user-dropdown')
+                <a href="{{ route('home') }}" class="btn btn-default">Back</a>
             </div>
 
         </div>

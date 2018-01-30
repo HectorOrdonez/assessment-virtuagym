@@ -1,4 +1,6 @@
 @if($availableUsers->count() > 0)
+    <hr/>
+
     <div class="dropdown">
         <button class="btn btn-success dropdown-toggle" type="button" id="assign-new-user-dropdown"
                 data-toggle="dropdown"
