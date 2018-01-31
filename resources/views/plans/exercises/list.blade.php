@@ -45,12 +45,12 @@
 
         <hr/>
 
-        <a class="btn btn-success btn-secondary" data-toggle="modal" data-target="#add-exercise-modal">
+        <a class="btn btn-success btn-secondary" data-toggle="modal" data-target="#add-exercise-modal-{{ $day->id }}">
             <i class="glyphicon glyphicon-plus"></i> Add Exercise
         </a>
+        @include('plans.exercises.add-modal')
 
     </div>
 
 </div>
 
-@include('plans.exercises.add-modal')

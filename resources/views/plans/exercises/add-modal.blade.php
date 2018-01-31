@@ -1,4 +1,4 @@
-<div class="modal fade" id="add-exercise-modal" tabindex="-1" role="dialog" aria-labelledby="addExerciseModal">
+<div class="modal fade" id="add-exercise-modal-{{$day->id}}" tabindex="-1" role="dialog" aria-labelledby="addExerciseModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form action="{{route('plans.days.exercises.store', [$plan->id, $day->id])}}" method="post">

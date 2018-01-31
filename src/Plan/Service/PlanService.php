@@ -8,9 +8,14 @@ use Virtuagym\Plan\ExerciseRepositoryInterface;
 use Virtuagym\Plan\PlanDayRepositoryInterface;
 use Virtuagym\Plan\PlanServiceInterface;
 use Virtuagym\User\Entity\User;
+use Virtuagym\User\Entity\UserCollection;
 
 class PlanService implements PlanServiceInterface
 {
+    const NOTIFICATION_USER_ASSIGNED = 'You just got assigned a new plan';
+    const NOTIFICATION_USER_REMOVED = 'You are no longer assigned to a plan';
+    const NOTIFICATION_PLAN_CHANGED = 'There have been changes to your workout plan. Check them out!';
+
     private $planDayRepository;
     private $exerciseRepository;
 
@@ -34,6 +39,8 @@ class PlanService implements PlanServiceInterface
     {
         $plan->users()->save($user);
 
+        $this->notify($user, self::NOTIFICATION_USER_ASSIGNED);
+
         return true;
     }
 
@@ -41,14 +48,13 @@ class PlanService implements PlanServiceInterface
      * @param User $user
      * @param Plan $plan
      * @return bool
-     *
-     * @todo Right now there is no need for the plan to do this, but we might want to send an email
-     *       and there we might specify the plan that got removed from the user
      */
     public function removeUserFromPlan(User $user, Plan $plan)
     {
         $user->plan_id = null;
         $user->save();
+
+        $this->notify($user, self::NOTIFICATION_USER_REMOVED);
 
         return true;
     }
@@ -60,7 +66,11 @@ class PlanService implements PlanServiceInterface
      */
     public function addDayToPlan(Plan $plan, $dayName)
     {
-        $this->planDayRepository->create($plan, $dayName);
+        $planDay = $this->planDayRepository->create($plan, $dayName);
+
+        $this->notifyUsers($plan->users()->get(), self::NOTIFICATION_PLAN_CHANGED);
+
+        return $planDay;
     }
 
     /**
@@ -71,7 +81,11 @@ class PlanService implements PlanServiceInterface
      */
     public function addExerciseToDay(Plan $plan, PlanDay $day, $exerciseName)
     {
-        return $this->exerciseRepository->create($day, $exerciseName);
+        $exercise = $this->exerciseRepository->create($day, $exerciseName);
+
+        $this->notifyUsers($plan->users()->get(), self::NOTIFICATION_PLAN_CHANGED);
+
+        return $exercise;
     }
 
     /**
@@ -81,7 +95,11 @@ class PlanService implements PlanServiceInterface
      */
     public function removeDayFromPlan(Plan $plan, PlanDay $day)
     {
-        return $this->planDayRepository->destroy($day->id);
+        $this->planDayRepository->destroy($day->id);
+
+        $this->notifyUsers($plan->users()->get(), self::NOTIFICATION_PLAN_CHANGED);
+
+        return true;
     }
 
     /**
@@ -92,7 +110,11 @@ class PlanService implements PlanServiceInterface
      */
     public function removeExerciseFromDay(Plan $plan, PlanDay $day, Exercise $exercise)
     {
-        return $this->exerciseRepository->destroy($exercise->id);
+        $this->exerciseRepository->destroy($exercise->id);
+
+        $this->notifyUsers($plan->users()->get(), self::NOTIFICATION_PLAN_CHANGED);
+
+        return true;
     }
 
     /**
@@ -103,7 +125,11 @@ class PlanService implements PlanServiceInterface
      */
     public function updateDayFromPlan(Plan $plan, PlanDay $day, array $params)
     {
-        return $this->planDayRepository->update($day, $params);
+        $this->planDayRepository->update($day, $params);
+
+        $this->notifyUsers($plan->users()->get(), self::NOTIFICATION_PLAN_CHANGED);
+
+        return true;
     }
 
     /**
@@ -115,6 +141,31 @@ class PlanService implements PlanServiceInterface
      */
     public function updateExerciseFromDay(Plan $plan, PlanDay $day, Exercise $exercise, array $params)
     {
-        return $this->exerciseRepository->update($exercise, $params);
+        $this->exerciseRepository->update($exercise, $params);
+
+        $this->notifyUsers($plan->users()->get(), self::NOTIFICATION_PLAN_CHANGED);
+
+        return true;
+    }
+
+    private function notifyUsers(UserCollection $users, $message)
+    {
+        foreach($users as $user)
+        {
+            $this->notify($user, $message);
+        }
+    }
+
+    private function notify(User $user, $message)
+    {
+        try {
+            \Mail::send('emails.default', ['title' => 'Message from Hector Assessment', 'content' => $message], function ($mail) use ($user) {
+                $mail->from('hectorassessment@gmail.com', 'Hector Ordonez');
+                $mail->to($user->email);
+            });
+        } catch (ClientException $e) {
+            // Ideally we would log this so we can debug why the mails are not being sent
+        }
+
     }
 }
